@@ -1,0 +1,22 @@
+{
+  "name": "mainapp-be",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "start": "node ./bin/www",
+    "dev": "nodemon ./bin/www"
+  },
+  "dependencies": {
+    "axios": "^0.27.2",
+    "cookie-parser": "~1.4.4",
+    "cors": "^2.8.5",
+    "debug": "~2.6.9",
+    "dotenv": "^16.0.1",
+    "express": "~4.16.1",
+    "express-validator": "^6.14.2",
+    "mongoose": "^6.5.2",
+    "morgan": "~1.9.1",
+    "node-fetch": "^3.2.10",
+    "nodemon": "^2.0.19"
+  }
+}
