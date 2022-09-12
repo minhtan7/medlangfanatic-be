@@ -11,9 +11,13 @@ const createDataController = {}
 createDataController.createInstructor = catchAsync(async (req, res, next) => {
     const data = await api.get("/instructors")
     await Instructor.deleteMany({})
-    data.data.items.forEach(instructor => {
-        // const instructor = new Instructor(instructor)
-        // instructor.name = dataInstructors[]
+    data.data.items.forEach(ins => {
+        console.log(ins)
+        const instructor = new Instructor(ins)
+        instructor.title = dataInstructors[ins.id].title
+        instructor.name = dataInstructors[ins.id].name
+        instructor.bio = dataInstructors[ins.id].bio
+        instructor.save()
     })
     res.send(data.data.items)
 })

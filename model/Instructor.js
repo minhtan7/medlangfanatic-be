@@ -6,6 +6,7 @@ const instructorSchema = Schema(
         id: Number,
         first_name: String,
         last_name: String,
+        name: String,
         bio: String,
         created_at: Date,
         user_id: Number,

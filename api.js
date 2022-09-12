@@ -25,6 +25,7 @@ api.interceptors.response.use(
         return response;
     },
     function (error) {
+        console.log("error", error)
         error = error.response.data;
         console.log("RESPONSE ERROR", error);
         let errorMsg = error.message || "";

@@ -115,6 +115,7 @@ const dataInstructors = {
     793608: {
         name: "Lê Hiệu",
         title: "BS.",
+        bio: "Hello"
     },
     670573: {
         name: "Nguyễn Trần Thanh Trúc",

@@ -16,7 +16,11 @@ main().catch(err => console.log(err));
 async function main() {
     await mongoose.connect(process.env.MONGODB_URI);
 }
-
+var http = require("https");
+setInterval(function () {
+    console.log("he", process.env.BE_URL)
+    http.get(process.env.BE_URL);
+}, 300000);
 
 app.use(logger('dev'));
 app.use(express.json());
