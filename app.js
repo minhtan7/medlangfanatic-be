@@ -21,7 +21,7 @@ setInterval(function () {
     console.log("he", process.env.BE_URL)
     http.get(process.env.BE_URL);
 }, 300000);
-
+console.log('restart')
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
