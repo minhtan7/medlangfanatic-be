@@ -8,7 +8,6 @@ const instructorSchema = Schema(
         last_name: String,
         name: String,
         bio: String,
-        created_at: Date,
         user_id: Number,
         title: String,
         slug: String,

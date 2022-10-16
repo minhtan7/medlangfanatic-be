@@ -22,12 +22,45 @@ const courseSchema = Schema(
         chapter_ids: [{ type: Number }],
         reviews_enabled: Boolean,
         user_id: Number,
-        instructor_id: Number
+        instructor_id: [Number],
+        heroContent: String,
+        price: Number,
+        thumbnail: String,
+        review: [
+            {
+                reviewerName: String,
+                reviewerTitle: String,
+                content: String,
+                imageUrl: String
+            }
+        ],
+        faq: [
+            {
+                question: String,
+                answer: String
+            }
+        ],
+        signUpLink: String,
+        signUpDue: Date,
+        feature: {
+            subject: [String],
+            format: [String],
+            time: [String],
+            fiveStarts: [String]
+        },
+        heroDescription: [String],
+        material: [
+            {
+                icon: String,
+                text: String
+            }
+        ]
     },
     {
         timestamps: true,
         toJSON: { virtuals: true },
         toObject: { virtuals: true },
+        _id: false
     }
 );
 
@@ -46,8 +79,6 @@ courseSchema.virtual('instructors', {
 courseSchema.methods.toJSON = function () {
     const obj = this.toObject();
     delete obj._id;
-    delete obj.id;
-    delete obj.chapter_ids;
     delete obj.__v;
     delete obj.createdAt;
     delete obj.updatedAt;

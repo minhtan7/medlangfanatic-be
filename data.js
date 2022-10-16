@@ -1,6 +1,6 @@
 const dataCourse = {
     MAVL: {},
-    "oral-presentation": {},
+    terminology: {},
 }
 dataCourse.MAVL.faq = [
     {
@@ -140,5 +140,165 @@ const dataInstructors = {
         bio: `Thủ khoa khóa luận bác sĩ nội trú chuyên ngành Mắt 2022\nHọc bổng toàn phần Lancaster Course của đại học Harvard 2022\nGiảng viên Anh văn y khoa trong các chương trình hợp tác MEC-UMP (2018 - 2021) tại đại học Y dược và MEDSPACE (2021) tại đại học Y khoa Phạm Ngọc Thạch.\nGiảng viên tiếng Anh tại Jio Health.`
     }
 }
+dataCourse.terminology.price = 1900
+dataCourse.terminology.review = [
+    {
+        name: "Hoàng Thị Kim Anh",
+        title: "Bác sĩ",
+        content: "Mình tình cờ biết đến lớp tiếng anh chuyên ngành online của Med Lang Fanatic rồi sau đó đăng ký học lớp Presenting Clinical Case (vì lớp Medical Literacy hot quá không đăng ký kịp) và cũng tình cờ là lớp cuối cùng trước khi Med Lang Fanatic tạm ngưng khoá này. Và mình cảm thấy thật may mắn. Lớp học cung cấp kiến thức về cách trình miệng hoàn chỉnh một bệnh án tiếng anh. Ngoài những điều các bạn khác đã review về lớp học siêu chất này (về các mẫu câu thông dụng, gv hướng dẫn nhiệt tình như thế nào), mình thấy ấn tượng nhất về 3 điều. Thứ nhất, người hướng dẫn cung cấp thêm rất nhiều kiến thức bên ngoài, quý giá nhất chính là kinh nghiệm trình bệnh thực tế và kinh nghiệm dịch thuật của anh. Đây là điều không thể có được nếu tự học. Thứ hai, anh dạy cách tự học từ các sách và các nguồn phong phú khác. Đây chính là “cần câu” mà các bạn hay nói. Thứ ba, cũng là mục đích mình học lớp học này, chính là cách nhặt những thông tin đắt giá phục vụ biện luận chẩn đoán trong một ca ls, sắp xếp để trình miệng ra rõ ràng; và ngược lại, nghe một ca ls do người khác trình mà mình biết được thông tin được trình theo trình tự như thế nào, thông tin nào được rút ra để chẩn đoán. Cuối cùng, người hướng dẫn thực sự rất nhiệt huyết. Thiếu điều cảm thấy mỗi lớp học anh đều hận không thể đem hết tâm can ra chỉ hết cho học viên :))) Nhưng hiệu quả của lớp học chính nằm ở thái độ và sự đầu tư của chính bản thân học viên nha. Hy vọng lớp Presenting Clinical Case sớm quay lại hoặc có level 2 cho em tiếp tục lót dép hóng ạ. Bạn nào chưa thể sắp xếp theo học có thể like page Med Lang Fanatic - nơi người hướng dẫn có thời gian thong thả chia sẻ rất nhiều kiến thức bổ ích - và follow Sportify của Med Lang Fanatic - để cập nhật kiến thức tương tự mà không cần tự đọc, anh đọc giùm nha mấy bạnnn."
+    },
+    {
+        name: "Như Quỳnh",
+        title: "Sinh viên Y5",
+        content: `Khóa học thật sự bổ ích. Chị Trâm rất dễ thương và hướng dẫn rất nhiệt tình.  Em cảm ơn chị nhiều lắm vì rút ruột, rút gan ra chia sẻ cho mọi người ạ.`
+    },
+]
+dataCourse.terminology.faq = [
+    {
+        question: "Có cần nói lưu loát tiếng Anh mới đủ khả năng tham gia khóa học này?",
+        answer: "Trình độ tối thiểu để có thể tham gia được lớp này là A2 - B1 theo khung quy chiếu châu Âu. Học viên sẽ được cung cấp nhiều từ vựng và mẫu câu để tự xây dựng được cách trình bày thông tin của một ca lâm sàng bằng tiếng Anh. Nếu học viên chưa quá tự tin trong việc trình bày, giảng viên hướng dẫn sẽ giúp học viên trình bày được trong các giờ tương tác. Nếu học viên đã nói tương đối tốt tiếng Anh, giảng viên hướng dẫn có thể hỗ trợ cho học viên trình hay hơn."
+    },
+    {
+        question: "Làm sao tôi có thể liên lạc với giảng viên hướng dẫn?",
+        answer: "Học viên sẽ được tham gia nhóm Zalo riêng của lớp học ngay sau khi hoàn tất đăng ký khóa học, và có thể liên lạc trao đổi trực tiếp với giảng viên hướng dẫn trong nhóm. Ngoài ra, Med Lang Fanatic còn để nút 'Discussions' tại mỗi bài của khóa học để học viên có thể trao đổi thêm hoặc gửi thắc mắc. Tất cả học viên của khóa học đều có thể thấy phần nội dung thảo luận này."
+    },
+    {
+        question: "Hình thức thanh toán học phí như thế nào?",
+        answer: ""
+    },
+    {
+        question: "Có giấy chứng nhận sau khi kết thúc khóa học không?",
+        answer: ""
+    }
+]
+dataCourse.terminology.signUpLink = "link here"
+dataCourse.terminology.signUpDue = new Date()
+dataCourse.terminology.feature = {
+    subject: [
+        "Sinh viên chuyên ngành Y Nha Dược",
+        "Nhân viên y tế các chuyên ngành",
+        "Dành cho các bạn chưa nắm vững nền tảng thuật ngữ y khoa tiếng Anh hoặc đang hướng tới mục tiêu xây dựng lại vững chắc căn bản thuật ngữ y khoa tiếng Anh"
+    ],
+    format: [
+        "Lý thuyết và bài tập tương tác trên nền tảng online của Med Lang Fanatic."
+    ],
+    time: [
+        "Thời gian dự kiến để hoàn thành khóa học là trong vòng 60 giờ.",
+        "Học viên có thể linh hoạt tùy chỉnh tốc độ tùy theo thời gian rảnh của bản thân."
+    ],
+    fiveStarts: [
+        "Video và bài đọc được đầu tư kỹ lưỡng, nhiều hình ảnh sinh động",
+        "Hệ thống mini - game phong phú giúp người học ôn tập",
+        "Tương tác với giảng viên dễ dàng khi cần"
+    ]
+}
+dataCourse.terminology.heroDescription = [
+    "Nắm vững khái niệm về 7 loại thuật ngữ y khoa",
+    "Series video giảng giải các thuật ngữ y khoa cơ bản theo giải phẫu, sinh lý, triệu chứng của 13 hệ cơ quan khác nhau với hình ảnh đẹp mắt, trực quan sinh động",
+    "Nắm trọn hơn 650 gốc từ tiếng Hy Lạp và Latin liên quan đến các thuật ngữ y khoa của 13 hệ cơ quan khác nhau",
+    "Hơn 100 bài tập giúp ghi nhớ nghĩa của các thuật ngữ cơ bản",
+    "Nắm vững cách tra cứu và gán nghĩa các thuật ngữ viết tắt",
+    "Tìm hiểu các thuật ngữ y khoa dễ bị hiểu nhầm"
+]
+dataCourse.terminology.material = [
+    {
+        icon: "alt",
+        text: "8 giờ học video giảng giải các thuật ngữ y khoa cơ bản theo giải phẫu, sinh lý, triệu chứng của 13 hệ cơ quan khác nhau với hình ảnh đẹp mắt, trực quan sinh động"
+    },
+    {
+        icon: "alt",
+        text: "Hơn 650 gốc từ tiếng Hy Lạp và Latin liên quan đến các thuật ngữ y khoa của 13 hệ cơ quan khác nhau"
+    },
+    {
+        icon: "alt",
+        text: "Hơn 100 bài tập giúp ghi nhớ nghĩa của các thuật ngữ cơ bản"
+    },
+    {
+        icon: "alt",
+        text: "Hơn 70 bài đọc chuyên sâu giúp học viên nắm vững nghĩa của thuật ngữ"
+    }
+]
+
 
 module.exports = { dataCourse, dataInstructors }
+
+// {
+//     "price": 1900,
+//         "review": [
+//             {
+//                 "name": "Hoàng Thị Kim Anh",
+//                 "title": "Bác sĩ",
+//                 "content": "Mình tình cờ biết đến lớp tiếng anh chuyên ngành online của Med Lang Fanatic rồi sau đó đăng ký học lớp Presenting Clinical Case (vì lớp Medical Literacy hot quá không đăng ký kịp) và cũng tình cờ là lớp cuối cùng trước khi Med Lang Fanatic tạm ngưng khoá này. Và mình cảm thấy thật may mắn. Lớp học cung cấp kiến thức về cách trình miệng hoàn chỉnh một bệnh án tiếng anh. Ngoài những điều các bạn khác đã review về lớp học siêu chất này (về các mẫu câu thông dụng, gv hướng dẫn nhiệt tình như thế nào), mình thấy ấn tượng nhất về 3 điều. Thứ nhất, người hướng dẫn cung cấp thêm rất nhiều kiến thức bên ngoài, quý giá nhất chính là kinh nghiệm trình bệnh thực tế và kinh nghiệm dịch thuật của anh. Đây là điều không thể có được nếu tự học. Thứ hai, anh dạy cách tự học từ các sách và các nguồn phong phú khác. Đây chính là “cần câu” mà các bạn hay nói. Thứ ba, cũng là mục đích mình học lớp học này, chính là cách nhặt những thông tin đắt giá phục vụ biện luận chẩn đoán trong một ca ls, sắp xếp để trình miệng ra rõ ràng; và ngược lại, nghe một ca ls do người khác trình mà mình biết được thông tin được trình theo trình tự như thế nào, thông tin nào được rút ra để chẩn đoán. Cuối cùng, người hướng dẫn thực sự rất nhiệt huyết. Thiếu điều cảm thấy mỗi lớp học anh đều hận không thể đem hết tâm can ra chỉ hết cho học viên :))) Nhưng hiệu quả của lớp học chính nằm ở thái độ và sự đầu tư của chính bản thân học viên nha. Hy vọng lớp Presenting Clinical Case sớm quay lại hoặc có level 2 cho em tiếp tục lót dép hóng ạ. Bạn nào chưa thể sắp xếp theo học có thể like page Med Lang Fanatic - nơi người hướng dẫn có thời gian thong thả chia sẻ rất nhiều kiến thức bổ ích - và follow Sportify của Med Lang Fanatic - để cập nhật kiến thức tương tự mà không cần tự đọc, anh đọc giùm nha mấy bạnnn."
+//             },
+//             {
+//                 "name": "Như Quỳnh",
+//                 "title": "Sinh viên Y5",
+//                 "content": `Khóa học thật sự bổ ích. Chị Trâm rất dễ thương và hướng dẫn rất nhiệt tình.  Em cảm ơn chị nhiều lắm vì rút ruột, rút gan ra chia sẻ cho mọi người ạ.`
+//             },
+//         ],
+//             "faq": [
+//                 {
+//                     "question": "Có cần nói lưu loát tiếng Anh mới đủ khả năng tham gia khóa học này?",
+//                     "answer": "Trình độ tối thiểu để có thể tham gia được lớp này là A2 - B1 theo khung quy chiếu châu Âu. Học viên sẽ được cung cấp nhiều từ vựng và mẫu câu để tự xây dựng được cách trình bày thông tin của một ca lâm sàng bằng tiếng Anh. Nếu học viên chưa quá tự tin trong việc trình bày, giảng viên hướng dẫn sẽ giúp học viên trình bày được trong các giờ tương tác. Nếu học viên đã nói tương đối tốt tiếng Anh, giảng viên hướng dẫn có thể hỗ trợ cho học viên trình hay hơn."
+//                 },
+//                 {
+//                     "question": "Làm sao tôi có thể liên lạc với giảng viên hướng dẫn?",
+//                     "answer": "Học viên sẽ được tham gia nhóm Zalo riêng của lớp học ngay sau khi hoàn tất đăng ký khóa học, và có thể liên lạc trao đổi trực tiếp với giảng viên hướng dẫn trong nhóm. Ngoài ra, Med Lang Fanatic còn để nút 'Discussions' tại mỗi bài của khóa học để học viên có thể trao đổi thêm hoặc gửi thắc mắc. Tất cả học viên của khóa học đều có thể thấy phần nội dung thảo luận này."
+//                 },
+//                 {
+//                     "question": "Hình thức thanh toán học phí như thế nào?",
+//                     "answer": ""
+//                 },
+//                 {
+//                     "question": "Có giấy chứng nhận sau khi kết thúc khóa học không?",
+//                     "answer": ""
+//                 }
+//             ],
+//                 "signUpLink": "link here",
+//                 "signUpDue": "Tue Oct 11 2022 15: 58: 04 GMT + 0100",
+//                 "feature": {
+//                     "subject": [
+//                         "Sinh viên chuyên ngành Y Nha Dược",
+//                         "Nhân viên y tế các chuyên ngành",
+//                         "Dành cho các bạn chưa nắm vững nền tảng thuật ngữ y khoa tiếng Anh hoặc đang hướng tới mục tiêu xây dựng lại vững chắc căn bản thuật ngữ y khoa tiếng Anh"
+//                     ],
+//                     "format": [
+//                         "Lý thuyết và bài tập tương tác trên nền tảng online của Med Lang Fanatic."
+//                     ],
+//                     "time": [
+//                         "Thời gian dự kiến để hoàn thành khóa học là trong vòng 60 giờ.",
+//                         "Học viên có thể linh hoạt tùy chỉnh tốc độ tùy theo thời gian rảnh của bản thân."
+//                     ],
+//                     "fiveStarts": [
+//                         "Video và bài đọc được đầu tư kỹ lưỡng, nhiều hình ảnh sinh động",
+//                         "Hệ thống mini - game phong phú giúp người học ôn tập",
+//                         "Tương tác với giảng viên dễ dàng khi cần"
+//                     ]
+//                 },
+//                 "heroDescription": [
+//                     "Nắm vững khái niệm về 7 loại thuật ngữ y khoa",
+//                     "Series video giảng giải các thuật ngữ y khoa cơ bản theo giải phẫu, sinh lý, triệu chứng của 13 hệ cơ quan khác nhau với hình ảnh đẹp mắt, trực quan sinh động",
+//                     "Nắm trọn hơn 650 gốc từ tiếng Hy Lạp và Latin liên quan đến các thuật ngữ y khoa của 13 hệ cơ quan khác nhau",
+//                     "Hơn 100 bài tập giúp ghi nhớ nghĩa của các thuật ngữ cơ bản",
+//                     "Nắm vững cách tra cứu và gán nghĩa các thuật ngữ viết tắt",
+//                     "Tìm hiểu các thuật ngữ y khoa dễ bị hiểu nhầm"
+//                 ],
+//                 "material": [
+//                     {
+//                         "icon": "alt",
+//                         "text": "8 giờ học video giảng giải các thuật ngữ y khoa cơ bản theo giải phẫu, sinh lý, triệu chứng của 13 hệ cơ quan khác nhau với hình ảnh đẹp mắt, trực quan sinh động"
+//                     },
+//                     {
+//                         "icon": "alt",
+//                         "text": "Hơn 650 gốc từ tiếng Hy Lạp và Latin liên quan đến các thuật ngữ y khoa của 13 hệ cơ quan khác nhau"
+//                     },
+//                     {
+//                         "icon": "alt",
+//                         "text": "Hơn 100 bài tập giúp ghi nhớ nghĩa của các thuật ngữ cơ bản"
+//                     },
+//                     {
+//                         "icon": "alt",
+//                         "text": "Hơn 70 bài đọc chuyên sâu giúp học viên nắm vững nghĩa của thuật ngữ"
+//                     }
+//                 ]
+// }

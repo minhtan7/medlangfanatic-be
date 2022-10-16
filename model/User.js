@@ -10,6 +10,7 @@ const userSchema = Schema(
         email: { type: String, required: true, unique: true },
         password: { type: String, required: false, unique: false },
         avatarUrl: { type: String, required: false, default: "" },
+        role: { type: String, enum: ["admin", "user"], default: "user" }
     },
     {
         timestamps: true,

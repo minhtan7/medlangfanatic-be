@@ -15,8 +15,9 @@ const chapterSchema = Schema(
         timestamps: true,
         toJSON: { virtuals: true },
         toObject: { virtuals: true },
-    }
+    },
 );
+
 
 chapterSchema.virtual('contents', {
     ref: 'Content',
