@@ -1,0 +1,233 @@
+/* subscription HP */
+#subscription-session .container{
+    position: relative;
+    padding: 2.5rem 4rem;
+    background-color: var(--main);
+    color: white;
+    border-radius: 80px;
+    width: 70%;
+    background-image: url("../../asset/topography.svg") ;
+}
+#subscription-session form{
+    
+}
+#subscription-session input{
+    border-radius: 80px;
+    padding: 1rem 2rem;
+    border: none;
+    width: 100%;
+}
+#subscription-session .subscription-span{
+    top: 50%;
+    right: 1rem;
+    z-index: 1;
+    background-color: var(--contrast)!important;
+    transform: translateY(-50%);
+    padding: 0.5rem 2rem;
+    border-radius: 80px;
+    color: var(--main);
+    font-weight: bold;
+}
+#subscription-session .container .hidden-logo{
+    width: 40rem;
+    top: 33%;
+    left: 50%;
+    opacity: 0.2;
+    transform: translateX(-5%) scale(1.5);
+}
+
+/* podcast-session */
+#podcast-session{
+
+}
+/* course-list-session */
+
+#course-list-session ul li svg{
+    color: var(--main);
+    font-size: 18px;
+}
+
+/* Why medlang WEB */
+#why-medlang-session{
+    text-align: justify;
+}
+#why-medlang-session .btn-sign-up{
+    width: 10rem;
+}
+
+#why-medlang-session .why-icon{
+    background-color: var(--contrast-light);
+    color: var(--main);
+    padding: 15px;
+    width: -moz-fit-content;
+    width: fit-content;
+    height: -moz-fit-content;
+    height: fit-content;
+    display: block;
+    border-radius: 50%;
+}
+#why-medlang-session .why-icon svg{
+    font-size: 2rem;
+}
+#why-medlang-session h1{
+    position: relative;
+    font-size: 2.5rem;
+}
+#why-medlang-session h1::before{
+    content: "";
+    position: absolute;
+    width: 10rem;
+    height: 4px;
+    background-color: var(--main);
+    bottom: -1rem;
+    left: 0;
+}
+/* instructor */
+
+.new-speaker {
+    height: 16rem;
+    width: 100%;
+    overflow: hidden;
+    border-radius: 10px;
+    margin-right: 1rem;
+    display: flex;
+    flex-wrap: wrap;
+    transition-duration: 0.2s;
+    box-shadow: 0 0 12px 5px #80808024;
+    /* border: 1px solid var(--contrast); */
+}
+.new-speaker .speaker-left {
+    height: 100%;
+    width: 40%;
+    background-color: var(--main-dark);
+    padding: 1rem 0.5rem;
+    color: black;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    color: var(--contrast);
+    background-image: url("../../asset/topography.svg");
+    /* border-left: 1px solid var(--contrast); */
+}
+
+
+.new-speaker .team-image {
+    border: 3px solid var(--contrast);
+    width: 8rem;
+    height: 8rem;
+    position: relative;
+    overflow: hidden;
+    border-radius: 50%;
+    margin: auto;
+}
+.new-speaker .team-image img {
+    position: absolute;
+    width: 100%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+}
+.new-speaker .speaker-right {
+    height: 100%;
+    width: 0;
+    /* background-color: var(--contrast-light); */
+    padding: 1rem 1rem 1rem 0rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    color: var(--main);
+    background-image: url("../../asset/topography.svg");
+    animation: 8s sliderRight 3s forwards ease-out;
+    float:left
+}
+
+@keyframes sliderRight {
+    from {width: 0;}
+    to {width: 60%;}
+}
+
+
+.speaker-topic {
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.speaker-name{
+    font-size: 18px;
+}
+.speaker-sub{
+    font-size: 12px;
+    margin-top: 1rem;
+    margin-bottom: 0;
+}
+
+/* blog sessions */
+#blog-session h1{
+    position: relative;
+}
+#blog-session .visit-blog{
+    position: absolute;
+    right: 1rem;
+    bottom: 0;
+    font-size: 16px;
+    font-weight: bold;
+    text-decoration: none;
+    color: black;
+    line-height: 1.8;
+}
+
+#blog-session .visit-blog::after{
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -0.5rem;
+    transform: translate(-100%,65%);
+    height: 100%;
+    width: 40rem;
+    border-top: 1px dashed var(--main);
+    border-top-style: dotted;
+}
+
+#blog-session .visit-blog:hover{
+    color: var(--main);
+    cursor: pointer;
+    
+}
+
+/* feedback list */
+#feedback-list ul{
+    position: relative;
+    width: 40px;
+    height: 40px;
+    margin-bottom: 0;
+    transform: translateX(-70%);
+    position: relative;
+}
+#feedback-list .student-icon{
+    list-style: none;
+    position: absolute;
+    top: 0;
+    left: 70%;
+    width: 40px;
+    height: 40px;
+    background-color: white;
+    border-radius: 50%;
+}
+#feedback-list .student-icon img{
+    vertical-align: top;
+}
+
+
+#feedback-list ul li.last::after{
+    content: "+50 Feedback";
+    position: absolute;
+    font-size: 12px;
+    width: 7rem;
+    right: 0;
+    bottom: 0;
+    top: 50%;
+    transform: translate(110%, -50%);
+    height: fit-content;
+    color: var(--main);
+}

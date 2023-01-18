@@ -19,7 +19,7 @@ const postSchema = Schema(
         updatedAt: Date,
         isDeleted: { type: Boolean, default: false, select: false },
         yoast_head_json: { type: String }
-    }
+    },
 );
 
 postSchema.plugin(require("./plugins/isDeletedFalse"));

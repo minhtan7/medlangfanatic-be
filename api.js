@@ -29,7 +29,7 @@ apiThinkific.interceptors.response.use(
         // console.log("error", error)
         error = error.response.data;
         console.log("RESPONSE ERROR", error);
-        let errorMsg = error.message || "";
+        let errorMsg = error.error || "";
         throw new AppError(404, error);
         // if (error.errors && error.errors.message)
         //     errorMsg = errorMsg + ": " + error.errors.message;
