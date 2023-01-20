@@ -6,11 +6,11 @@ const Post = require("../model/Post")
 const postController = {}
 
 postController.createPost = catchAsync(async (req, res, next) => {
-    const { title, content, image, author, topic, createdBy } = req.body
+    const { title, content, image, author, topic, createdBy, createdAt } = req.body
     const slug = createSlug(title)
     let post = await Post.findOne({ slug })
     if (post) throw new AppError(404, "Post already exists");
-    post = await Post.create({ title, content, image, author, topic, createdBy, slug })
+    post = await Post.create({ title, content, image, author, topic, createdBy, slug, createdAt })
     sendResponse(res, 200, true, post, null, "Post created")
 })
 
@@ -21,7 +21,7 @@ postController.getPosts = catchAsync(async (req, res, next) => {
     const totalPost = await Post.find().countDocuments()
     const totalPage = Math.ceil(totalPost / limit)
     const offset = (page - 1) * limit
-    const posts = await Post.find(filter).skip(offset).limit(limit).sort({ createAt: -1 }).populate("topic")
+    const posts = await Post.find(filter).skip(offset).limit(limit).sort({ createdAt: -1 }).populate("topic")
     sendResponse(res, 200, true, { posts, totalPage, page }, null, "Get all posts")
 })
 
