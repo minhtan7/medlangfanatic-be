@@ -1,6 +1,8 @@
+const { request } = require("express")
 const { createSlug } = require("../helpers/slug.helper")
 const { catchAsync, sendResponse, AppError } = require("../helpers/utils.helper")
 const Post = require("../model/Post")
+const APIFeature = require("../utils/apiFeature")
 
 
 const postController = {}
@@ -14,15 +16,27 @@ postController.createPost = catchAsync(async (req, res, next) => {
     sendResponse(res, 200, true, post, null, "Post created")
 })
 
+
+
 postController.getPosts = catchAsync(async (req, res, next) => {
-    let { page, limit, ...filter } = req.query
-    page = parseInt(page) || 1
-    limit = parseInt(limit) || 10
-    const totalPost = await Post.find().countDocuments()
-    const totalPage = Math.ceil(totalPost / limit)
-    const offset = (page - 1) * limit
-    const posts = await Post.find(filter).skip(offset).limit(limit).sort({ createdAt: -1 }).populate("topic")
-    sendResponse(res, 200, true, { posts, totalPage, page }, null, "Get all posts")
+    let features = new APIFeature(Post.find(), req.query).filter().sortFields().limitFields()
+    const totalPost = await features.query.countDocuments()
+    const totalPage = Math.ceil(totalPost / (parseInt(req.query.limit) || 9))
+    page = parseInt(req.query.page) || 1
+
+    features = new APIFeature(Post.find(), req.query).filter().sortFields().limitFields().paginate()
+    const posts = await features.query.populate("topic")
+
+    // limit = parseInt(limit) || 10
+    // const offset = (page - 1) * limit
+    // const posts = await Post.find(filter).skip(offset).limit(limit).sort({ createdAt: -1 }).populate("topic")
+    sendResponse(res, 200, true, { posts, totalPage, page }, null, "Get posts")
+})
+
+postController.searchPosts = catchAsync(async (req, res, next) => {
+    let features = new APIFeature(Post.find(), req.params).search()
+    const posts = await features.query.populate("topic").clone()
+    sendResponse(res, 200, true, { posts }, null, "Get all posts")
 })
 
 postController.getPostBySlug = catchAsync(async (req, res, next) => {
@@ -30,8 +44,7 @@ postController.getPostBySlug = catchAsync(async (req, res, next) => {
     const post = await Post.findOne({ slug }).populate("topic").lean()
     if (!post) throw new AppError(404, "Post not found");
     const ranndomPostIndex = Math.floor(Math.random() * post.topic.length)
-    console.log("ranndomPostIndex", ranndomPostIndex)
-    console.log("post", post)
+
     const relatedPost = await Post.find({ topic: { $in: [post.topic[ranndomPostIndex]] } })
     post.relatedPost = relatedPost
     sendResponse(res, 200, true, post, null, "Get single post")

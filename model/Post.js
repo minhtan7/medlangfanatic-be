@@ -22,6 +22,16 @@ const postSchema = Schema(
     },
 );
 
+postSchema.index(
+    { title: "text", content: "text" },
+    {
+        weights: {
+            title: 10,
+            content: 5
+        },
+        name: "TextIndex"
+    }
+);
 postSchema.plugin(require("./plugins/isDeletedFalse"));
 
 const Post = mongoose.model("Post", postSchema);
