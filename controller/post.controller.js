@@ -30,13 +30,18 @@ postController.getPosts = catchAsync(async (req, res, next) => {
     // limit = parseInt(limit) || 10
     // const offset = (page - 1) * limit
     // const posts = await Post.find(filter).skip(offset).limit(limit).sort({ createdAt: -1 }).populate("topic")
-    sendResponse(res, 200, true, { posts, totalPage, page }, null, "Get posts")
+    sendResponse(res, 200, true, { posts, totalPage, page, totalPost }, null, "Get posts")
 })
 
 postController.searchPosts = catchAsync(async (req, res, next) => {
-    let features = new APIFeature(Post.find(), req.params).search()
-    const posts = await features.query.populate("topic").clone()
-    sendResponse(res, 200, true, { posts }, null, "Get all posts")
+    let features = new APIFeature(Post.find(), req.params).search().limitFields().paginate()
+    const totalPost = await features.query.clone().countDocuments()
+    const totalPage = Math.ceil(totalPost / (parseInt(req.params.limit) || 5))
+    page = parseInt(req.params.page) || 1
+
+    const posts = await features.query.clone().populate("topic")
+    console.log(totalPage, page, posts)
+    sendResponse(res, 200, true, { posts, totalPage, page, totalPost }, null, "Get all posts")
 })
 
 postController.getPostBySlug = catchAsync(async (req, res, next) => {
