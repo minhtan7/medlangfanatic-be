@@ -7,7 +7,6 @@ const courseController = {}
 courseController.getCourse = catchAsync(async (req, res, next) => {
     const { id } = req.params
 
-
     let course = await Course.findOne({ id }).populate({ path: "chapters", populate: { path: "contents", select: "-_id -__v -createdAt -updatedAt" } }).populate({ path: "instructors", select: "-_id -__v -createdAt -updatedAt" })
     if (course.chapters[0].constructor.name == "Array") {
         const chapterArr = {}
