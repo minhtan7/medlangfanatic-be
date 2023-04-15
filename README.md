@@ -3,15 +3,15 @@ Med Lang Fanatic is an innovative medical English course platform designed for m
 
 This comprehensive project consists of a frontend repository and two backend repositories (Backend 1 and Backend 2).
 
-**Table of Content:**
+### Link Website: [medlangfanatic](https://www.medlangfanatic.com)
+
+### Table of Content:
 - [Repositories](#Repositories)
 - [Features](#Features)
 - [Tech Stack](#Tech-Stack)
 - [Backend 1 - Course/Blog](#Backend-1)
 - [Backend 2 - Quiz](#Backend-2)
 - [Developing Features](#Developing-Features)
-
-**Links**: [medlangfanatic](https://www.medlangfanatic.com)
 
 ## Repositories
 - **Frontend:** [Frontend Repository](https://github.com/minhtan7/medlangfanatic-fe-nextjs)
