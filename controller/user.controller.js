@@ -7,6 +7,7 @@ userController.register = catchAsync(async (req, res, next) => {
     let { name, email, password } = req.body;
 
     let user = await User.findOne({ email });
+
     if (user) throw new AppError(409, "User already exists", "Register Error");
 
     const salt = await bcrypt.genSalt(10);
@@ -27,6 +28,7 @@ userController.register = catchAsync(async (req, res, next) => {
         "Create user successful"
     );
 });
+
 //admin create user
 userController.createUser = catchAsync(async (req, res, next) => {
     let { name, email, password, role, avatarUrl } = req.body;
