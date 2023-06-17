@@ -17,4 +17,7 @@ router.use("/topics", topicApi)
 const userApi = require("./user.api")
 router.use("/users", userApi)
 
+const affiliateApi = require("./affiliate.api")
+router.use("/affiliates", affiliateApi)
+
 module.exports = router;
