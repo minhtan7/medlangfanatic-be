@@ -13,7 +13,9 @@ affiliateController.create = catchAsync(async (req, res, next) => {
     const { affiliateId: userId, email, slug } = req.body
     const user = await User.findById(userId)
     if (!user) throw new AppError(404, "User not found");
-    const course = await Course.findOne({ slug })
+    console.log(slug)
+    const course = await Course.findOne({ slug }).lean()
+    console.log(course._id)
     Affiliate.create({
         courseId: course._id,
         userId,
@@ -37,7 +39,8 @@ const PIPELINE_ID_TO_COURSE = {
 }
 affiliateController.update = catchAsync(async (req, res, next) => {
     const { email } = req.params
-    const { price, pipelineId } = body
+    const { price, pipelineId } = req.body
+    console.log(email.toLowerCase(), PIPELINE_ID_TO_COURSE[pipelineId])
     let affiliate = await Affiliate.findOne({
         email: email.toLowerCase(),
         courseId: PIPELINE_ID_TO_COURSE[pipelineId]
