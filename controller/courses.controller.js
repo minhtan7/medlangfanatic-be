@@ -6,9 +6,9 @@ const courseController = {}
 
 courseController.getCourse = catchAsync(async (req, res, next) => {
     const { id } = req.params
-
-
+    console.log("id", id)
     let course = await Course.findOne({ id }).populate({ path: "chapters", populate: { path: "contents", select: "-_id -__v -createdAt -updatedAt" } }).populate({ path: "instructors", select: "-_id -__v -createdAt -updatedAt" })
+    // let course = await Course.findOne({ id }).populate("chapters")
     if (course.chapters[0].constructor.name == "Array") {
         const chapterArr = {}
         course.chapters = course.chapters.map(chapter => {
@@ -23,7 +23,7 @@ courseController.getCourse = catchAsync(async (req, res, next) => {
         })
         const contentArr = {}
         course.chapters.forEach(chapter => {
-            chapter.contents = chapter.contents.map(c => {
+            chapter.contents = chapter?.contents?.map(c => {
                 if (c.constructor.name == "Array") {
                     for (let i = 0; i < c.length; i++) {
                         if (!contentArr[c[i].id]) {
@@ -36,13 +36,13 @@ courseController.getCourse = catchAsync(async (req, res, next) => {
             })
         })
     }
+
     course.toJSON()
     sendResponse(res, 200, true, course, null, "Get Course")
 })
 
 courseController.updateCourse = catchAsync(async (req, res, next) => {
     const { id } = req.params
-    console.log(id)
     const {
         review, faq,
         signUpLink, signUpDue,
@@ -50,12 +50,19 @@ courseController.updateCourse = catchAsync(async (req, res, next) => {
         heroDescription, material,
         feature, instructor_id
     } = req.body
-    console.log(req.body)
-    const course = await Course.findOneAndUpdate(
-        id,
-        req.body,
-        { new: true }
-    )
+    let course = await Course.findOne({ id: parseInt(id) })
+    console.log(course)
+    if (!course) {
+        course = new Course({ ...req.body, id: parseInt(id) })
+        await course.save()
+        console.log(course)
+    } else {
+        course = await Course.findOneAndUpdate(
+            { id: parseInt(id) },
+            req.body,
+            { new: true }
+        )
+    }
     console.log(course)
     sendResponse(res, 200, true, course, null, "Update course")
 })

@@ -7,6 +7,7 @@ const Chapter = require("../../model/Chapter")
 const Content = require("../../model/Content")
 const { dataInstructors } = require("../../data")
 const Post = require("../../model/Post")
+const { default: mongoose } = require("mongoose")
 const createDataController = {}
 
 createDataController.createInstructor = catchAsync(async (req, res, next) => {
@@ -42,16 +43,12 @@ createDataController.createCourseWithId = catchAsync(async (req, res, next) => {
     const data = await apiThinkific.get(`/courses/${id}`)
     const instructorId = await Instructor.findOne({ id: data.id })
     let course = await Course.findOne({ id })
+    console.log(data)
     if (course) throw new AppError(404, "course already exists");
     course = await Course.create({
-        ...course,
-        review,
-        faq,
-        signUpLink,
-        signUpDue,
-        price,
-        heroContent
+        ...data.data
     })
+    console.log(course)
     res.send(course)
 })
 
@@ -69,13 +66,31 @@ createDataController.updateCourseWithId = catchAsync(async (req, res, next) => {
     const data = await apiThinkific.get(`/courses/${id}`)
     const { instructor_id, ...rest } = data.data
 
+    let course = await Course.findOne({ id })
+    // console.log("hrere", mongoose.Types.ObjectId())
+    if (!course) {
+        const _id = mongoose.Types.ObjectId()
+        course = new Course({
+            _id,
+            ...rest,
+            ...req.body,
+            sellingPoint,
+            instructor_id: [instructor_id]
+        })
+        console.log("hrere", course)
+        await course.save()
+    } else {
+        course = await Course.findOneAndUpdate({ id }, {
+            ...rest,
+            ...req.body,
+            sellingPoint,
+            instructor_id: [instructor_id]
+        }, { new: true })
 
-    const course = await Course.findOneAndUpdate({ id }, {
-        ...rest,
-        ...req.body,
-        sellingPoint,
-        instructor_id: [instructor_id]
-    }, { new: true })
+    }
+    console.log("hrere", course)
+
+
     res.send(course)
 })
 
