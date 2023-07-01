@@ -118,6 +118,7 @@ affiliateController.update = catchAsync(async (req, res, next) => {
     affiliate = await Affiliate.findByIdAndUpdate(affiliate._id, {
         price,
         payTime: new Date(),
+        commissionRate: 10,
         status: "done"
     }, {
         new: true
