@@ -43,7 +43,6 @@ courseController.getCourse = catchAsync(async (req, res, next) => {
 
 courseController.updateCourse = catchAsync(async (req, res, next) => {
     const { id } = req.params
-    console.log(id)
     const {
         review, faq,
         signUpLink, signUpDue,
@@ -51,12 +50,19 @@ courseController.updateCourse = catchAsync(async (req, res, next) => {
         heroDescription, material,
         feature, instructor_id
     } = req.body
-    console.log(req.body)
-    const course = await Course.findOneAndUpdate(
-        id,
-        req.body,
-        { new: true }
-    )
+    let course = await Course.findOne({ id: parseInt(id) })
+    console.log(course)
+    if (!course) {
+        course = new Course({ ...req.body, id: parseInt(id) })
+        await course.save()
+        console.log(course)
+    } else {
+        course = await Course.findOneAndUpdate(
+            { id: parseInt(id) },
+            req.body,
+            { new: true }
+        )
+    }
     console.log(course)
     sendResponse(res, 200, true, course, null, "Update course")
 })

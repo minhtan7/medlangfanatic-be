@@ -43,9 +43,10 @@ createDataController.createCourseWithId = catchAsync(async (req, res, next) => {
     const data = await apiThinkific.get(`/courses/${id}`)
     const instructorId = await Instructor.findOne({ id: data.id })
     let course = await Course.findOne({ id })
+    console.log(data)
     if (course) throw new AppError(404, "course already exists");
     course = await Course.create({
-        ...course
+        ...data.data
     })
     console.log(course)
     res.send(course)

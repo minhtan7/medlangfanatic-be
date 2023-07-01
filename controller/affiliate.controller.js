@@ -95,20 +95,21 @@ affiliateController.create = catchAsync(async (req, res, next) => {
 })
 
 const PIPELINE_ID_TO_COURSE = {
-    "2": "6346bff0cafc9db5b57e6187",
-    "1": "6346bff0cafc9db5b57e6189",//"Medical Terminology"
+    "1": "6346bff0cafc9db5b57e6187", //MAVL
+    "2": "6346bff0cafc9db5b57e6189",//"Medical Terminology"
     "5": "6346bff0cafc9db5b57e6182", //"PCCS - Trình Ca Lâm Sàng",
     "6": "63ac9dd2ec3e00b7126bb033",//"CP101 - Giao tiếp với bệnh nhân",
     "7": "6346bff0cafc9db5b57e6183", // "LLM - Listening to the Language of Medicine",
-    "8": "63f651dfd91bd478ce10f1a1", // "MVFree - Medical Vocabulary Free",
-    // "9":// "ComboV - Combo Từ vựng",
-    //     "11":// "RS - Reading Skills: The Essential Course",
-    // "18":// "Luyện thi chứng chỉ",
+    "9": "64a09a45963f72e24571b900",// "ComboV - Combo Từ vựng",
+    "11": "6346bff0cafc9db5b57e6181",//RS - Reading Skills: The Essential Course",
+    "18": "64a09cfeecaeca80d19a3749"// "Luyện thi chứng chỉ",
 }
 affiliateController.update = catchAsync(async (req, res, next) => {
     const { email } = req.params
-    const { price, pipelineId } = req.body
+    const { price, affiliate: pipelineId } = req.body
     console.log(email.toLowerCase(), PIPELINE_ID_TO_COURSE[pipelineId])
+    console.log(req.body)
+
     let affiliate = await Affiliate.findOne({
         email: email.toLowerCase(),
         courseId: PIPELINE_ID_TO_COURSE[pipelineId]
