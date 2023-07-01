@@ -8,6 +8,7 @@ const affiliateSchema = new Schema({
     commissionRate: { type: Number },
     status: { type: String, enum: ["pending", "done"] },
     payTime: { type: Date },
+    price: { type: Number },
     isDeleted: { type: Boolean, require: true, default: false },
 }, {
     timestamps: true

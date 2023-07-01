@@ -1,3 +1,4 @@
+const { default: mongoose } = require("mongoose")
 const { catchAsync, AppError, sendResponse } = require("../helpers/utils.helper")
 const Affiliate = require("../model/Affiliate")
 const Course = require("../model/Course")
@@ -5,9 +6,76 @@ const User = require("../model/User")
 
 const affiliateController = {}
 
-const comissionRate = {
-    "abc": 20
+const COMMISSION_RATE_BY_USER = {
+    "648e2a14b4fc930eeb9d332a": 20
 }
+
+affiliateController.getAffiliateMonthlyRecord = catchAsync(async (req, res, next) => {
+    let { id: userId, year, month } = req.params;
+
+    if (!userId || !year || !month)
+        throw new AppError(400, "User ID, Year and Month are required");
+
+    const affiliates = await Affiliate.aggregate([
+        {
+            $match: {
+                userId: mongoose.Types.ObjectId(userId),
+                payTime: {
+                    $gte: new Date(year, parseInt(month) - 1, 1),
+                    $lt: new Date(year, parseInt(month), 1),
+                },
+                isDeleted: false,
+                status: "done",
+            },
+        },
+        {
+            $group: {
+                _id: "$courseId",
+                totalIncome: { $sum: "$price" },
+                totalUnitsSold: { $sum: 1 },
+                commissionRate: { $first: "$commissionRate" },
+            },
+        },
+        {
+            $lookup: {
+                from: "courses",
+                localField: "_id",
+                foreignField: "_id",
+                as: "course",
+            },
+        },
+        {
+            $unwind: "$course",
+        },
+        {
+            $project: {
+                _id: 0,
+                course_id: "$course._id",
+                course_name: "$course.name",
+                units_sold: "$totalUnitsSold",
+                income: "$totalIncome",
+                commission: { $multiply: ["$totalIncome", "$commissionRate", 0.01] },
+            },
+        },
+    ]);
+    console.log(affiliates)
+    if (!affiliates || affiliates.length === 0)
+        throw new AppError(404, "No affiliate data found for this month");
+
+    // calculate total income and commission for the month
+    const totalIncome = affiliates.reduce((sum, aff) => sum + aff.income, 0);
+    const totalCommission = affiliates.reduce((sum, aff) => sum + aff.commission, 0);
+
+    const result = {
+        month,
+        year,
+        income: totalIncome,
+        commission: totalCommission,
+        courses_sold: affiliates
+    }
+    return sendResponse(res, 200, true, result, null, "Get affiliate monthly record successful");
+});
+
 
 affiliateController.create = catchAsync(async (req, res, next) => {
     const { affiliateId: userId, email, slug } = req.body
@@ -20,7 +88,7 @@ affiliateController.create = catchAsync(async (req, res, next) => {
         courseId: course._id,
         userId,
         email: email.toLowerCase(),
-        commissionRate: comissionRate[user._id.toString()],
+        commissionRate: COMMISSION_RATE_BY_USER[user._id.toString()],
         status: "pending"
     })
     return sendResponse(res, 200, true, null, null, "Create new affiliate")
