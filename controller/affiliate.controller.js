@@ -95,8 +95,8 @@ affiliateController.create = catchAsync(async (req, res, next) => {
 })
 
 const PIPELINE_ID_TO_COURSE = {
-    "1": "6346bff0cafc9db5b57e6187",
-    "2": "6346bff0cafc9db5b57e6189",//"Medical Terminology"
+    "2": "6346bff0cafc9db5b57e6187",
+    "1": "6346bff0cafc9db5b57e6189",//"Medical Terminology"
     "5": "6346bff0cafc9db5b57e6182", //"PCCS - Trình Ca Lâm Sàng",
     "6": "63ac9dd2ec3e00b7126bb033",//"CP101 - Giao tiếp với bệnh nhân",
     "7": "6346bff0cafc9db5b57e6183", // "LLM - Listening to the Language of Medicine",
@@ -113,7 +113,7 @@ affiliateController.update = catchAsync(async (req, res, next) => {
         email: email.toLowerCase(),
         courseId: PIPELINE_ID_TO_COURSE[pipelineId]
     })
-    if (!affiliate) throw new AppError(404, "Affiliate not found");
+    if (!affiliate) throw new AppError(404, "affiliate not found");
     affiliate = await Affiliate.findByIdAndUpdate(affiliate._id, {
         price,
         payTime: new Date(),
