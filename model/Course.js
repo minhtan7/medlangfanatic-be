@@ -60,7 +60,7 @@ const courseSchema = Schema(
         timestamps: true,
         toJSON: { virtuals: true },
         toObject: { virtuals: true },
-        _id: false
+        // _id: false
     }
 );
 

@@ -1,6 +1,6 @@
 
 const { apiThinkific, apiWP } = require("../../api")
-const { catchAsync } = require("../../helpers/utils.helper")
+const { catchAsync, AppError } = require("../../helpers/utils.helper")
 const Instructor = require("../../model/Instructor")
 const Course = require("../../model/Course")
 const Chapter = require("../../model/Chapter")
@@ -44,7 +44,11 @@ createDataController.createCourseWithId = catchAsync(async (req, res, next) => {
     const instructorId = await Instructor.findOne({ id: data.id })
     let course = await Course.findOne({ id })
     console.log(data)
-    if (course) throw new AppError(404, "course already exists");
+    if (course) {
+        course = await Course.findOneAndUpdate({ id }, {
+            ...data.data
+        }, { new: true })
+    }
     course = await Course.create({
         ...data.data
     })
@@ -118,35 +122,16 @@ createDataController.createChapterByCourseId = catchAsync(async (req, res, next)
     const course = await Course.findOne({ id })
     // let duration = 0
     Promise.all(course.chapter_ids.map(async chapterId => {
-        const data = await apiThinkific.get(`/chapters/${chapterId}`)
-        const chapter = await Chapter.findOne({ id: chapterId })
-        const { content_ids,
-            description,
-            duration_in_seconds,
-            id,
-            name,
-            position } = data.data
-        console.log(data.data)
-        const x = await Chapter.findOneAndUpdate({ id: chapterId }, {
-            content_ids,
-            description,
-            duration_in_seconds,
-            id,
-            name,
-            position,
-        }, { new: true })
-        if (!chapter) {
-            // duration += data.data.duration_in_seconds
-            Chapter.create(data.data)
-        } else {
-            // duration += data.data.duration_in_seconds
-            console.log(data.data)
+        try {
+            const data = await apiThinkific.get(`/chapters/${chapterId}`)
+            const chapter = await Chapter.findOne({ id: chapterId })
             const { content_ids,
                 description,
                 duration_in_seconds,
                 id,
                 name,
                 position } = data.data
+            console.log(data.data)
             const x = await Chapter.findOneAndUpdate({ id: chapterId }, {
                 content_ids,
                 description,
@@ -155,8 +140,32 @@ createDataController.createChapterByCourseId = catchAsync(async (req, res, next)
                 name,
                 position,
             }, { new: true })
-            console.log("x", x)
+            if (!chapter) {
+                // duration += data.data.duration_in_seconds
+                Chapter.create(data.data)
+            } else {
+                // duration += data.data.duration_in_seconds
+                console.log(data.data)
+                const { content_ids,
+                    description,
+                    duration_in_seconds,
+                    id,
+                    name,
+                    position } = data.data
+                const x = await Chapter.findOneAndUpdate({ id: chapterId }, {
+                    content_ids,
+                    description,
+                    duration_in_seconds,
+                    id,
+                    name,
+                    position,
+                }, { new: true })
+                console.log("x", x)
+            }
+        } catch (error) {
+            console.log("error", error.message)
         }
+
     }))
 
     res.send("Success")
@@ -181,16 +190,26 @@ createDataController.createContentByCourseId = catchAsync(async (req, res, next)
     const course = await Course.findOne({ id })
     console.log(course, id)
     Promise.all(course.chapter_ids.map(async cid => {
-        const data = await apiThinkific.get(`/chapters/${cid}/contents`)
-        data.data.items.length && await Promise.all(data.data.items.map(async (item) => {
-            const content = await Content.findOne({ id: item.id })
-            console.log("content", content)
-            if (!content) {
-                await Content.create(item)
-            } else {
-                await Content.findOneAndUpdate({ id: item.id }, item, { new: true })
-            }
-        }))
+        try {
+            const data = await apiThinkific.get(`/chapters/${cid}/contents`)
+            data.data.items.length && await Promise.all(data.data.items.map(async (item) => {
+                try {
+
+                    const content = await Content.findOne({ id: item.id })
+                    console.log("content", content)
+                    if (!content) {
+                        await Content.create(item)
+                    } else {
+                        await Content.findOneAndUpdate({ id: item.id }, item, { new: true })
+                    }
+                } catch (error) {
+                    console.log("error", error.message)
+                }
+            }))
+
+        } catch (error) {
+            console.log("error", error)
+        }
     }))
     // data.data.items.forEach(course => Course.create(course))
     res.send("Success")

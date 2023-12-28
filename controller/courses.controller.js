@@ -6,10 +6,10 @@ const courseController = {}
 
 courseController.getCourse = catchAsync(async (req, res, next) => {
     const { id } = req.params
-    console.log("id", id)
     let course = await Course.findOne({ id }).populate({ path: "chapters", populate: { path: "contents", select: "-_id -__v -createdAt -updatedAt" } }).populate({ path: "instructors", select: "-_id -__v -createdAt -updatedAt" })
     // let course = await Course.findOne({ id }).populate("chapters")
-    if (course.chapters[0].constructor.name == "Array") {
+    // console.log(course.chapters)
+    if (course.chapters && course.chapters[0].constructor.name == "Array") {
         const chapterArr = {}
         course.chapters = course.chapters.map(chapter => {
             if (chapter.constructor.name == "Array") {
@@ -36,8 +36,8 @@ courseController.getCourse = catchAsync(async (req, res, next) => {
             })
         })
     }
-
     course.toJSON()
+    course.chapters.sort((a, b) => a.position - b.position)
     sendResponse(res, 200, true, course, null, "Get Course")
 })
 
